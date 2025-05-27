@@ -67,7 +67,7 @@ Usuário --> UC3
 Usuário --> UC4
 @enduml
 
-Para visualizar este diagrama: Você pode copiar o código PlantUML acima e colá-lo em um editor online como PlantUML Online Server ou usar um plugin de PlantUML em sua IDE.
+
 2. Diagrama de Sequência (Detecção de Invasão)
 Este diagrama detalha a ordem das interações e mensagens trocadas entre os diferentes componentes do sistema durante um cenário específico: a detecção de uma invasão. Ele é lido de cima para baixo, mostrando o fluxo temporal dos eventos.
 A sequência de eventos é a seguinte:
@@ -95,7 +95,7 @@ Servidor -> APIEmergencia: Envio de alerta
 Servidor --> Usuário: Notificação via App
 @enduml
 
-Para visualizar este diagrama: Você pode copiar o código PlantUML acima e colá-lo em um editor online como PlantUML Online Server ou usar um plugin de PlantUML em sua IDE.
+
 3. Diagrama de Classes
 O diagrama de classes apresenta a estrutura estática do sistema, mostrando as classes, seus atributos (dados que armazenam) e métodos (ações que podem realizar), além dos relacionamentos entre elas.
 As classes principais são:
