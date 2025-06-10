@@ -6,6 +6,7 @@ public class CameraDAO {
 
     public CameraDAO() {
         try {
+            Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection("jdbc:sqlite:sentinelcore.db");
             criarTabela();
         } catch (SQLException e) {
