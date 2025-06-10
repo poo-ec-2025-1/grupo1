@@ -2,12 +2,10 @@ public class Main {
     public static void main(String[] args) {
         CameraDAO dao = new CameraDAO();
 
-        // Criar
         CameraInteligente c1 = new CameraInteligente(1, "Câmera Entrada", true);
         dao.criar(c1);
 
-        // Buscar
-        CameraInteligente buscada = dao.buscar(1);
+        CameraInteligente buscada = dao.buscar();
         System.out.println("Buscada: " + buscada);
 
         // Atualizar
@@ -15,7 +13,7 @@ public class Main {
         buscada.setLigada(false);
         dao.atualizar(buscada);
 
-        // Listar
+        // Listar todas
         System.out.println("Todas as câmeras:");
         for (CameraInteligente cam : dao.listarTodas()) {
             System.out.println(cam);
@@ -23,9 +21,5 @@ public class Main {
 
         // Deletar
         dao.deletar(1);
-        System.out.println("Deletado. Lista atual:");
-        for (CameraInteligente cam : dao.listarTodas()) {
-            System.out.println(cam);
-        }
     }
 }
