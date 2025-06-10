@@ -14,17 +14,10 @@ Este projeto simula operações CRUD (Create, Retrieve, Update, Delete) para uma
 ## Prints de execução
 
 ### 📸 Adição e Listagem
-![Adição](prints/adicao.png)
 
 ### 🛠️ Atualização
-![Atualização](prints/atualizacao.png)
 
 ### ❌ Remoção
-![Remoção](prints/remocao.png)
 
-## Como executar
+![imagem exec](https://github.com/user-attachments/assets/fd8ef565-80bb-4428-939b-a843b1e2bd83)
 
-```bash
-javac Main.java CameraInteligente.java CameraService.java
-java Main
-```
