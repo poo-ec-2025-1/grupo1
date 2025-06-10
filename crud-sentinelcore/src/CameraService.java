@@ -1,5 +1,6 @@
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CameraDAO {
     private Connection conn;
@@ -7,18 +8,18 @@ public class CameraDAO {
     public CameraDAO() {
         try {
             Class.forName("org.sqlite.JDBC");
-            conn = DriverManager.getConnection("jdbc:sqlite:sentinelcore.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:camera.db");
             criarTabela();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
     private void criarTabela() {
         String sql = "CREATE TABLE IF NOT EXISTS cameras (" +
-                     "id INTEGER PRIMARY KEY," +
-                     "nome TEXT NOT NULL," +
-                     "ligada BOOLEAN NOT NULL)";
+                "id INTEGER PRIMARY KEY," +
+                "nome TEXT NOT NULL," +
+                "ligada BOOLEAN NOT NULL)";
         try (Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
@@ -27,7 +28,7 @@ public class CameraDAO {
     }
 
     public void criar(CameraInteligente c) {
-        String sql = "INSERT INTO cameras(id, nome, ligada) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO cameras(id, nome, ligada) VALUES(?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, c.getId());
             pstmt.setString(2, c.getNome());
@@ -38,11 +39,10 @@ public class CameraDAO {
         }
     }
 
-    public CameraInteligente buscar(int id) {
-        String sql = "SELECT * FROM cameras WHERE id = ?";
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
+    public CameraInteligente buscar() {
+        String sql = "SELECT * FROM cameras LIMIT 1";
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
             if (rs.next()) {
                 return new CameraInteligente(
                     rs.getInt("id"),
@@ -68,6 +68,25 @@ public class CameraDAO {
         }
     }
 
+    public List<CameraInteligente> listarTodas() {
+        List<CameraInteligente> lista = new ArrayList<>();
+        String sql = "SELECT * FROM cameras";
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                CameraInteligente c = new CameraInteligente(
+                    rs.getInt("id"),
+                    rs.getString("nome"),
+                    rs.getBoolean("ligada")
+                );
+                lista.add(c);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
     public void deletar(int id) {
         String sql = "DELETE FROM cameras WHERE id = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -76,23 +95,5 @@ public class CameraDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public List<CameraInteligente> listarTodas() {
-        List<CameraInteligente> lista = new ArrayList<>();
-        String sql = "SELECT * FROM cameras";
-        try (Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                lista.add(new CameraInteligente(
-                    rs.getInt("id"),
-                    rs.getString("nome"),
-                    rs.getBoolean("ligada")
-                ));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return lista;
     }
 }
