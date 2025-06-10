@@ -8,18 +8,16 @@ public class Main {
         CameraInteligente buscada = dao.buscar();
         System.out.println("Buscada: " + buscada);
 
-        // Atualizar
         buscada.setNome("Câmera Entrada Principal");
         buscada.setLigada(false);
         dao.atualizar(buscada);
 
-        // Listar todas
         System.out.println("Todas as câmeras:");
         for (CameraInteligente cam : dao.listarTodas()) {
             System.out.println(cam);
         }
 
-        // Deletar
         dao.deletar(1);
+        System.out.println("Câmera com ID 1 deletada.");
     }
 }
