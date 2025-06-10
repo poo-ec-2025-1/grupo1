@@ -1,19 +1,23 @@
 public class CameraInteligente {
     private int id;
-    private String local;
+    private String nome;
+    private boolean ligada;
 
-    public CameraInteligente(int id, String local) {
+    public CameraInteligente(int id, String nome, boolean ligada) {
         this.id = id;
-        this.local = local;
+        this.nome = nome;
+        this.ligada = ligada;
     }
 
     public int getId() { return id; }
-    public String getLocal() { return local; }
+    public String getNome() { return nome; }
+    public boolean isLigada() { return ligada; }
 
-    public void setLocal(String local) { this.local = local; }
+    public void setNome(String nome) { this.nome = nome; }
+    public void setLigada(boolean ligada) { this.ligada = ligada; }
 
     @Override
     public String toString() {
-        return "Camera #" + id + " instalada em: " + local;
+        return "CameraInteligente{id=" + id + ", nome='" + nome + "', ligada=" + ligada + "}";
     }
 }
