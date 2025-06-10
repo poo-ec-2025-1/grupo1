@@ -17,9 +17,9 @@ public class CameraDAO {
 
     private void criarTabela() {
         String sql = "CREATE TABLE IF NOT EXISTS cameras (" +
-                "id INTEGER PRIMARY KEY," +
-                "nome TEXT NOT NULL," +
-                "ligada BOOLEAN NOT NULL)";
+                     "id INTEGER PRIMARY KEY, " +
+                     "nome TEXT NOT NULL, " +
+                     "ligada BOOLEAN NOT NULL)";
         try (Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
