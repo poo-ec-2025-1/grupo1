@@ -1,18 +1,31 @@
 public class Main {
     public static void main(String[] args) {
-        CameraService servico = new CameraService();
+        CameraDAO dao = new CameraDAO();
 
-        servico.adicionar(new CameraInteligente(1, "Entrada principal"));
-        servico.adicionar(new CameraInteligente(2, "Garagem"));
+        // Criar
+        CameraInteligente c1 = new CameraInteligente(1, "Câmera Entrada", true);
+        dao.criar(c1);
 
-        servico.listarTodas();
+        // Buscar
+        CameraInteligente buscada = dao.buscar(1);
+        System.out.println("Buscada: " + buscada);
 
-        System.out.println("\nAtualizando localização...");
-        servico.atualizar(1, "Recepção");
-        servico.listarTodas();
+        // Atualizar
+        buscada.setNome("Câmera Entrada Principal");
+        buscada.setLigada(false);
+        dao.atualizar(buscada);
 
-        System.out.println("\nRemovendo câmera 2...");
-        servico.deletar(2);
-        servico.listarTodas();
+        // Listar
+        System.out.println("Todas as câmeras:");
+        for (CameraInteligente cam : dao.listarTodas()) {
+            System.out.println(cam);
+        }
+
+        // Deletar
+        dao.deletar(1);
+        System.out.println("Deletado. Lista atual:");
+        for (CameraInteligente cam : dao.listarTodas()) {
+            System.out.println(cam);
+        }
     }
 }
