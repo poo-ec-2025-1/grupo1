@@ -9,15 +9,28 @@ public class CameraInteligente {
         this.ligada = ligada;
     }
 
-    public int getId() { return id; }
-    public String getNome() { return nome; }
-    public boolean isLigada() { return ligada; }
+    public int getId() {
+        return id;
+    }
 
-    public void setNome(String nome) { this.nome = nome; }
-    public void setLigada(boolean ligada) { this.ligada = ligada; }
+    public String getNome() {
+        return nome;
+    }
+
+    public boolean isLigada() {
+        return ligada;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setLigada(boolean ligada) {
+        this.ligada = ligada;
+    }
 
     @Override
     public String toString() {
-        return "CameraInteligente{id=" + id + ", nome='" + nome + "', ligada=" + ligada + "}";
+        return "CameraInteligente [id=" + id + ", nome=" + nome + ", ligada=" + ligada + "]";
     }
 }
